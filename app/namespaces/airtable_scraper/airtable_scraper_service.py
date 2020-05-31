@@ -105,6 +105,7 @@ def get_all_records():
 
     # Try to get records from data if the request was successful
     try:
+        logger.info(len(data['records']))
         # If offset was included in data, retrieve additional paginated records
         if 'offset' in list(data.keys()):
             request_info = [url, headers, params]
@@ -117,6 +118,7 @@ def get_all_records():
     # If request was not successful, there will be no records field in response
     # Just return what is in cached layer and log an error
     except KeyError as e:
+        import pdb; pdb.set_trace()
         body = "Results were not successfully retrieved from Airtable API. Please check connection parameters in config.py and fields in airtable_fields_config.json."
         logger.error(body)
         logger.error(f"Error Info: {e}")
