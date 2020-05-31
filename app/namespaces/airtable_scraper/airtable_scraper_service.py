@@ -60,9 +60,10 @@ def _get_paginated_records(data, api_request_info):
     # Extract records from initial request response
     records = data['records']
 
+    import pdb; pdb.set_trace()
+
     # Continue adding paginated records so long as there is an offset in the api response
     while 'offset' in list(data.keys()):
-        import pdb; pdb.set_trace()
         params['offset'] = data['offset']
         r = requests.get(url, headers=headers, params=params)
         data = r.json()
@@ -106,6 +107,7 @@ def get_all_records():
 
     # Try to get records from data if the request was successful
     try:
+        import pdb; pdb.set_trace()
         # If offset was included in data, retrieve additional paginated records
         if 'offset' in list(data.keys()):
             request_info = [url, headers, params]
