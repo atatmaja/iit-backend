@@ -34,6 +34,6 @@ class AirtableScraper(Resource):
             # Read records from json cache layer
             records = read_from_json()
             status_code = 200
-        result = {"airtable_request_status_code": status_code, "records": records, "updated_at": file_created_datetime}
+        result = {"airtable_request_status_code": status_code, "records": records, "len": len(records), "updated_at": file_created_datetime}
         return jsonify(result)
 
